@@ -1,8 +1,8 @@
 import math
 
 def prob(n, p, r):
-    a = lambda f:1 if f==0 else f*fact(f-1)
-    b = fact(n-1) / (fact(r-1) * fact(n-r))
+    fact = lambda f:1 if f==0 else f*fact(f-1)
+    nCk = fact(n-1) / (fact(r-1) * fact(n-r))
     result = nCk * pow(p, r) * pow(1 - p, n - r)
     return result
 
@@ -15,10 +15,10 @@ def sumProb(N, p, r):
     """ Khi gọi hàm sumProb(100, 0.5, 2) ta được kết quả là 0.9999999999999999 ~ 1
             Khi gọi hàm sumProb(500, 0.5, 2) ta được kết quả là 0.9999999999999999 ~ 1
             Như vậy hàm sumProb có thể sử dụng để kiểm chứng tổng xác suất của phân bố negative binomial bằng 1 """
-    sumprop = 0
+    sum = 0
     for i in range(r, N):
-        sumprop += prob(i, p, r)
-    return sumprop
+        sum += prob(i, p, r)
+    return sum
 
 def approxEntropy(N, p, r):
     """ Entropy của nguồn negative binomial với N=100, p=1/2, r=2 là 2.711468724220612
